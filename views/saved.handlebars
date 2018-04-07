@@ -1,0 +1,34 @@
+<div align="center">
+
+</div>
+
+<ul class = "undevoured_burgers">
+  {{#each burgers}}
+    <ol>
+      {{#if devoured}}
+      {{burger_name}}
+     {{/if}}
+   </ol>
+{{/each}}
+</ul>
+
+<ul>
+  {{#each burgers}}
+   <ol>
+     {{#unless devoured}}
+      {{burger_name}}
+      <button class="change-devoured" data-id="{{id}}" data-newdevoured="{{devoured}}">
+        devour
+
+</button>
+</li>
+
+     {{/unless}}
+  </ol>
+  {{/each}}
+</ul>
+
+
+
+
+<form class="create-form">
