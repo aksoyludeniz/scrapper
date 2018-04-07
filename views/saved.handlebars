@@ -1,34 +1,65 @@
-<div align="center">
+<div class="container">
+  <div class="header clearfix">
+    <nav>
+      <ul class="nav nav-pills float-right">
+        <li class="nav-item">
+          <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+      </ul>
+    </nav>
+    <h3 class="text-muted">News Scrapper</h3>
+  </div>
+  <hr>
+  {{!--Display the scraped titles, links, and article snippets in this section.--}}
+  <div class="row">
+    <h1><a href="{{result.link}}" target="_blank">{{result.title}}</a></h1>
+    <!-- <p>{{result.articleSnippet}}</p> -->
+  </div>
+  <div class="row">
+    <h2>Comments So Far</h2>
+  </div>
+  {{!--If no Notes exist then display the following ptag info--}}
+  <div class="row">
+    {{#unless result.Note}}
+    <p>There are no Notes just yet. Add yours below!</p>
+    {{/unless}}
+  </div>
+  {{!--Iterate through the Notes by author and their message, display them, and have the option to delete them from the user view (also deletes from our db --}}
+  <div class="row">
+    <ul>
+      {{#each result.Note}}
+      <li style="list-style: none">
+        <h5>Name: {{this.name}} </h5>
+        <p>Message: {{this.body}}</p>
+        <button class="delete-button btn btn-secondary" data-Note="{{this._id}}">Delete Comment</button>
+      </li>
+      {{/each}}
+    </ul>
 
+  </div>
+  <div class="row">
+    <h2>Say Something About This Article</h2>
+  </div>
+  {{!--Do a post method for the Note(s) a user adds and save it to the db--}}
+  <form method="POST" action="/headlines/{{result._id}}">
+    <div class="form-group row">
+      <label for="name" class="col-form-label">Name</label>
+      <input class="form-control" type="text" name="name" id="name" required>
+    </div>
+    <div class="form-group row">
+      <label for="body">Message</label>
+      <textarea class="form-control" id="body" name="body" rows="3" required></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+  <br>
+  <br>
+  <br>
+  <br>
+  <footer class="footer">
+    <div class="container">
+
+    </div>
+  </footer>
 </div>
-
-<ul class = "undevoured_burgers">
-  {{#each burgers}}
-    <ol>
-      {{#if devoured}}
-      {{burger_name}}
-     {{/if}}
-   </ol>
-{{/each}}
-</ul>
-
-<ul>
-  {{#each burgers}}
-   <ol>
-     {{#unless devoured}}
-      {{burger_name}}
-      <button class="change-devoured" data-id="{{id}}" data-newdevoured="{{devoured}}">
-        devour
-
-</button>
-</li>
-
-     {{/unless}}
-  </ol>
-  {{/each}}
-</ul>
-
-
-
-
-<form class="create-form">

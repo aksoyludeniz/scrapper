@@ -2,11 +2,10 @@ var mongojs = require("mongojs");
 var databaseUrl = "scrapper";
 var collections = ["scrapedData"];
 var express = require("express")
-var db = mongojs(databaseUrl, collections);
 var app = express();
 var db = require("../models");
 
-app.get("/headline/:id", function(req, res) {
+app.get("/headlines/:id", function(req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
   db.Headline.findOne({ _id: req.params.id })
     // ..and populate all of the notes associated with it

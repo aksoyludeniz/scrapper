@@ -8,6 +8,10 @@ var db = require("../models");
 
 var app = express();
 
+app.get('/', function (req, res){
+  res.redirect('/headlines');
+})
+
 app.get("/scrape", function(req,res) {
     console.log("hello");
   axios.get("http://www.nytimes.com").then(function(response) {
@@ -20,7 +24,7 @@ app.get("/scrape", function(req,res) {
       // $("p.summary").each(function(i, element) {
           console.log(element);
 
-            var result = [];
+            var result = {};
         // result.title = $(this)
         //  .children("a")
         //  .html();
@@ -37,6 +41,8 @@ app.get("/scrape", function(req,res) {
 
 
 
+    // result.headlineSnippet = headlineSnippet;
+
        db.Headline.create(result)
        .then(function(dbHeadline) {
         console.log("sucessful save");
@@ -52,7 +58,7 @@ app.get("/scrape", function(req,res) {
   });
 });
 
-  // console.log(result);
+ res.redirect("/");
   });
 
   module.exports = app;

@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="header clearfix">
+        <nav>
+            <ul class="nav nav-pills float-right">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+            </ul>
+        </nav>
+        <h3 class="text-muted">News scrapper</h3>
+    </div>
+
+    <div class="jumbotron">
+        <h1 class="jumboheader">Scraper</h1>
+        <p class="lead">Scrape it</p>
+        <p><a class="btn btn-lg btn-success" href="/scrape" role="button">Hit it !</a></p>
+    </div>
+
+    {{!--News Cards--}} {{!--Iterate through the results and populate the handlebars injection points with the scraped titles,
+    links, and article snippets.--}} {{#each result}}
+    <div class="card news-section">
+        <a href="{{element.link}}">
+            <h4 class="card-header">{{element.title}}</h4>
+        </a>
+        <div class="card-block">
+            {{!--
+            <h4 class="card-title"></h4>
+            </a>--}}
+            <a href="{{element.link}}">
+                <!-- <p class="card-text">{{this.articleSnippet}}</p> -->
+            </a>
+            <br>
+            <a href="/headlines/{{this._id}}" class="btn btn-primary">note</a>
+        </div>
+    </div>
+    <br>
+    <br> {{/each}}
+
+
+
+    <footer class="footer">
+
+    </footer>
+
+</div>
+<!-- /container -->
